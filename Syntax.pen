@@ -420,14 +420,10 @@ and this, using empty lines:
 
 > THOUGHTS, IDEAS, ETC
 
-- what about images?
-	- maybe use [[imageurl]] and [[@@<key>@@]]
-	- alt by adding it with a pipe: [[<imageurl>|<alt text>]]
+
 - Using Meta Attributes as Placeholders
 	- meta data can be used as placeholders
 	- to use a meta attributes as placeholders, use '@@<key>@@'
-
-
 
 
 

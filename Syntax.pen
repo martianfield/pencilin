@@ -1,0 +1,441 @@
+@title: Pencilin Syntax
+@author: Martin Imfeld, @martianfield, martin.imfeld@gmail.com
+
+> INDEX
+
+- 000 : General Formatting
+-- 001 : Blocks
+-- 002 : Line Breaks are line breaks
+-- 003 : Run-On Lines
+- 100 : Block Types
+-- 110 Paragraph
+-- 120 Header
+-- 130 Lists
+-- 140 Code Block
+-- 150 Blockquotes
+- 200 Inline Styles
+-- 201 Strong (Bold)
+-- 202 Underline
+-- 203 Emphasis (Italic)
+-- 210 Inline Code
+
+
+> PEN.000 - General Formatting
+
+>> PEN.001 - Blocks
+
+1. Pencilin considers everything part of a block that is not separated by an empty line.
+2. Excess lines are ignored. Use them to format to put emphasis on the structure of the text (see Style Recommendations)
+3. Trailing whitespace is discarded
+
+
+>> PEN.002 - Line breaks are line breaks
+
+Line breaks within a block are treated as such.
+
+
+>> PEN.003 - Run-on Lines
+
+If you want a line to continue with the next line, end the line with dunder (double underscore)
+
+	This line will continue__
+	on this line
+
+When two lines are combined, the dunder is replaced with a single space. The above example results in:
+
+	This line will continue on this line
+
+
+
+
+> PEN 100 - Block Types
+
+The following block types are supported:
+
+- paragraphs
+- headers
+- lists (ordered, unordered, mixed)
+- code blocks
+- blockquotes
+
+
+> PEN.110 - Paragraphs
+
+1. Paragraphs do not have any prefixing symbol.
+2. Paragaraphs cannot start with whitespace (i.e. lines starting with whitespace are not considered paragraphs)
+3. Newlines inside paragraphs are treated as such. To enforce spanning, use an dunder at the end of a line.
+
+
+> PEN.120 - Headers
+
+- Headers start with the (not indented) prefix |>|
+- Pencilin supports 6 levels of headers. The first level has one |>|, the second two, etc
+- You may affix a corresponding number of |<| at the end of header
+- Headers can have multiple-lines. Create run-on lines by appending a dunder
+- All leading |>| and whitespace between them and the actual text are removed. This holds true for every line of a header.
+- All trailing |<| and whitespace is removed
+
+A note on style:
+
+You can (and you should) use the header prefix on every line of a header:
+
+	> This header has
+	> Several lines
+
+If you use run-on lines, Pencilin will however not remove |>| prefixes. Format headers with run-on lines in the following manner:
+
+	> This header has__
+	  a run-on line
+	> And an additional line
+
+
+
+> PEN.130 - Lists
+
+- Lists are blocks. I.e. any empty line inside a list will be considered as the end of the list block.
+- Ordered and unordered lists are supported
+- List levels are indicated by means of additional list type decorators
+
+
+>> PEN.131 - Ordered Lists
+
+- Ordered list items are decorated with a leading period (.).
+- Ordered lists can have their ordinal set explicitly (1., 2., etc)
+
+
+>> PEN.132 - Unordered Lists
+
+Unorderered list items are marked with a leading minus sign (-).
+
+
+>> PEN.133 - Mixing List Types
+
+A list block can freely mix ordered and unordered items.
+
+
+>> PEN.134 - List Item
+
+Pencilin considers every line starting with |-| or |.| or |<n>.| as an item.
+
+If a line within a list block does not have one of the above signatures
+
+- it is considered part of the previous item.
+- it will be treated as a new line within the list item.
+
+
+>> PEN.135 - List Item Levels
+
+To build the hierarchy within a list, use 1-n list markers:
+
+	- first level
+	-- sublevel
+	--- even deeper
+	-- up again
+
+Pencilin first attempts to correct all non-sensical hierarchy from the list block.
+
+
+>> PEN.136 - List Item Clean-Up
+
+List items are stripped of all list signatures and whitespaces from the beginning and end of each line.
+
+
+
+> PEN.140 - Code Blocks
+
+- Code blocks are defined by indentation. Any amount of indentation will do, even only one space.
+- Pencilin uses the line with the least amount of indentation as the 'vertical ruler'. That is, Pencilin will left strip that amount from each line.
+
+
+
+> PEN.105 - Blockquotes
+
+- Blockquotes are defined by identation + double quotation marks.
+- You can finish the blockquote with another double quotation mark to increase readability - this is not mandatory though.
+- the leading double quote of the first line, and the quotation mark at end of the last line (if any) are removed
+- Pencilin uses the line with the least amount of indentation as the 'vertical ruler'.
+
+
+
+> PEN.200 - Inline Styles
+
+Pencilin supports the following inline styles:
+
+- code
+- underline
+- italic
+- bold
+
+Note: italic and bold actually are misnomers. In HTML those terms mostly refer to text style. Pencilin, however, cares very little about styling.
+
+Pencilin cares about semantics. Hence, you should understand the term 'bold' as 'important text', and 'italic' as 'emphasised text'. 
+
+Consequently, when it comes to HTML Pencilin will render 'italic' text using the |em| tag, and 'bold' text using the 'strong' tag.
+
+
+>> PEN.201 - Bold
+
+To bold text, surround it with asteriks.
+
+	It's time to be *bold*.
+
+
+>> PEN.202 - Underline
+
+To underline text, surround it with underscores.
+
+Example:
+
+	It is easy to _underline_ text.
+
+
+>> PEN.203 - Italic
+
+To italicize text, surround it with forward slashes.
+
+Example:
+
+	The best Pizza is made in /Italy/.
+
+>> PEN.204 - Strike Through
+
+TODO
+
+
+>> PEN.205 - Inline Code
+
+Surround inline code with pipes.
+
+Example:
+
+	To output text to the console, use the |print()| function.
+
+If you need a pipe inside an inline code section, escape it:
+
+	Pipe : |\|\||
+
+Note: any inline decoration within an inline code section is (of course) ignored.
+
+
+>> PEN.210 - Nesting inline styles
+
+The bold, underline, and italic inline styles can be nested. Example:
+
+	Text that is *_/bold, underlined, and italic/_*
+
+
+
+> PEN.300 - Attributes and anchors
+
+Attributes are used to
+
+- define meta information
+- define attributes of blocks
+- define anchors
+- define mix-ins (i.e. variables)
+- define just about anything you please
+
+Syntax:
+
+	@<key>[:<value>]
+
+If the optional |:<value>| portion is not given, Pencilin considers the attribute to be an anchor.
+
+
+
+> PEN.301 - Block Attributes
+
+Attributes belong to the block they prepend.
+
+You can add as many attributes to a block as you like (each on its own line).
+
+Attributes use the |@| prefix, followed by |<key>:<value>|. For instance:
+
+	@css:white-box
+
+
+
+> PEN.302 - Meta Attributes
+
+If an attribute does not prepend a block (i.e. is not directly above a block), it is considered meta data.
+
+Meta attributes use the same syntax as Block Attributes.
+
+	@title:Down the Rabbit Hole
+
+
+
+> PEN.303 - Anchor Attributes
+
+Attributes without the value portion are considered anchors:
+
+	@footer
+
+
+
+> PEN.304 - Mixins (i.e. variables)
+
+Any meta attribute you define can be used as a variable inside your text.
+
+To use an attribute as a mix-in, surround the attribute's key with |@|.
+
+	@author: Martin Imfeld
+
+	After years of clean-shaving, @author@ decided to let his beard grow.
+
+If you (accidentally) use the same attribute key twice, Pencilin will use the value of the last attribute definition.
+
+If a meta attribute does not exist, Pencilin will simply ignore the mixin (i.e. the mixing will be rendered as text).
+
+
+
+> PEN.310 - Built-in attribute keys
+
+Pencilin features a handful of built-in attribute keys:
+
+- |class| : CSS class
+
+
+> PEN.311 - Class Attribute Key
+
+The |class| attribute key is used to add CSS classes to blocks.
+
+Example:
+
+	@class: warning large
+	Some paragraph
+
+renders to:
+
+	<p class="warning large">Some paragraph</p>
+
+
+
+> PEN.400 - Links and Images
+
+
+
+> PEN.401 - Links
+
+Surround links with brackets. Example:
+
+	<http://pencilin.org>
+
+How to remember: the brackets point left and right (away from the link), as if pointing to something external.
+
+You can supply an anchor text for links by adding it inside the square bracket and separating it from the url with a pipe. Example:
+
+	<pencilin|http://pencilin.org>
+
+The anchor text should be the first thing. However, Pencilin is not picky and will attempt to recognize the link.
+
+
+> PEN.402 - Images
+
+Surround image url with square brackets. Example:
+
+	[myimage.png]
+
+How to remember: the square brackets are like a painting's frame.
+
+To add alternate text (or any other information) use |<key>:<value>| and separate from the image's url with a pipe:
+
+	[sunset.png|alt:sunset text|title:Acapulco Sunset]
+
+
+> PEN.403 - Image Links
+
+You can combine image and link:
+
+	<[myimage.png]|http://www.myimage.com>
+
+
+
+> PEN.900 - Style Guides
+
+These are not mandatory, but recommended rules.
+
+
+
+> PEN.901 - Tabs
+
+Do not use tabs. Use 4 spaces instead. Pencilin will convert any tab to 4 spaces before parsing.
+
+
+
+> PEN.902 - Use inline code only for very short pieces of code
+
+The intention for inline code is to display very short code snippets (ideally only keywords, simple expressions, class names, function signatures, etc). 
+
+For longer pieces of code, use a code block.
+
+
+> PEN.903 - Use empty lines to increase readability
+
+No matter what type of semantic text you are using, finding your way arround a bigger text can become an exercise in concentration and strenous to your eyes.
+
+Using empty lines to structure text visually can help immensly. Remember, Pencilin ignores empty lines - you can use as many of them as you want.
+
+This is particularly useful when it comes to headers. The lower the level of a header, the more empty spaces should be use before it. Let us assume your text uses three levels of headers. It would make sense to prepend headers of level 1 with four empty lines, level 2 with three empty lines, level 3 with two empty lines.
+
+Compare the following two examples. The first not making use of empty lines:
+
+	In this example we do not use empty lines to improve visibility of headers.
+
+	> Header Level 1 - No empty lines used
+
+	Some text belonging to this part of the text.
+
+	>> Header Level 2 - Too bad we don't use empty linse
+
+	More text. Just to drive the point home.
+
+	>>> Header Level 3 - Prepended with only one empy line
+
+	Right, even more text. Just for kicks.
+
+and this, using empty lines:
+
+	In this example we *do* use empty lines to improve visibility of headers.
+
+
+
+
+	> Header Level 1 - No empty lines used
+
+	Some text belonging to this part of the text.
+
+
+
+	>> Header Level 2 - Too bad we don't use empty linse
+
+	More text. Just to drive the point home.
+
+
+	>>> Header Level 3 - Prepended with only one empy line
+
+	Right, even more text. Just for kicks.
+
+
+
+> THOUGHTS, IDEAS, ETC
+
+- what about images?
+	- maybe use [[imageurl]] and [[@@<key>@@]]
+	- alt by adding it with a pipe: [[<imageurl>|<alt text>]]
+- Using Meta Attributes as Placeholders
+	- meta data can be used as placeholders
+	- to use a meta attributes as placeholders, use '@@<key>@@'
+
+
+
+
+
+> MISSING STUFF
+
+- comments
+- horizontal rule
+- tables
+- automatisms:
+-- @toc : creates a table of content
+

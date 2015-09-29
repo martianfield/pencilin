@@ -1,40 +1,46 @@
 @title: Pencilin Syntax
 @author: Martin Imfeld, @martianfield, martin.imfeld@gmail.com
+@version: 0.1.1
+@date: 2015-09-29
 
 > INDEX
 
-- 000 : General Formatting
--- 001 : Blocks
--- 002 : Line Breaks are line breaks
--- 003 : Run-On Lines
-- 100 : Block Types
--- 110 Paragraph
--- 120 Header
--- 130 Lists
--- 140 Code Block
--- 150 Blockquotes
-- 200 Inline Styles
--- 201 Strong (Bold)
--- 202 Underline
--- 203 Emphasis (Italic)
--- 210 Inline Code
+- 100 : General Formatting
+-- 101 : Blocks
+-- 102 : Line Breaks are line breaks
+-- 103 : Run-On Lines
+- 200 : Block Types
+-- 210 Paragraph
+-- 220 Header
+-- 230 Lists
+-- 240 Code Block
+-- 250 Blockquotes
+- 300 Inline Styles
+-- 301 Strong (Bold)
+-- 302 Underline
+-- 303 Emphasis (Italic)
+-- 310 Inline Code
+- 400 Links and Images
+-- 401 Links
+-- 402 Images
+-- 403 Image Links
 
 
-> PEN.000 - General Formatting
+> PEN.100 - General Formatting
 
->> PEN.001 - Blocks
+>> PEN.101 - Blocks
 
 1. Pencilin considers everything part of a block that is not separated by an empty line.
 2. Excess lines are ignored. Use them to format to put emphasis on the structure of the text (see Style Recommendations)
 3. Trailing whitespace is discarded
 
 
->> PEN.002 - Line breaks are line breaks
+>> PEN.102 - Line breaks are line breaks
 
 Line breaks within a block are treated as such.
 
 
->> PEN.003 - Run-on Lines
+>> PEN.103 - Run-on Lines
 
 If you want a line to continue with the next line, end the line with dunder (double underscore)
 
@@ -48,7 +54,7 @@ When two lines are combined, the dunder is replaced with a single space. The abo
 
 
 
-> PEN 100 - Block Types
+> PEN 200 - Block Types
 
 The following block types are supported:
 
@@ -59,14 +65,14 @@ The following block types are supported:
 - blockquotes
 
 
-> PEN.110 - Paragraphs
+> PEN.210 - Paragraphs
 
 1. Paragraphs do not have any prefixing symbol.
 2. Paragaraphs cannot start with whitespace (i.e. lines starting with whitespace are not considered paragraphs)
 3. Newlines inside paragraphs are treated as such. To enforce spanning, use an dunder at the end of a line.
 
 
-> PEN.120 - Headers
+> PEN.220 - Headers
 
 - Headers start with the (not indented) prefix |>|
 - Pencilin supports 6 levels of headers. The first level has one |>|, the second two, etc
@@ -90,30 +96,30 @@ If you use run-on lines, Pencilin will however not remove |>| prefixes. Format h
 
 
 
-> PEN.130 - Lists
+> PEN.230 - Lists
 
 - Lists are blocks. I.e. any empty line inside a list will be considered as the end of the list block.
 - Ordered and unordered lists are supported
 - List levels are indicated by means of additional list type decorators
 
 
->> PEN.131 - Ordered Lists
+>> PEN.231 - Ordered Lists
 
 - Ordered list items are decorated with a leading period (.).
 - Ordered lists can have their ordinal set explicitly (1., 2., etc)
 
 
->> PEN.132 - Unordered Lists
+>> PEN.232 - Unordered Lists
 
 Unorderered list items are marked with a leading minus sign (-).
 
 
->> PEN.133 - Mixing List Types
+>> PEN.233 - Mixing List Types
 
 A list block can freely mix ordered and unordered items.
 
 
->> PEN.134 - List Item
+>> PEN.234 - List Item
 
 Pencilin considers every line starting with |-| or |.| or |<n>.| as an item.
 
@@ -123,7 +129,7 @@ If a line within a list block does not have one of the above signatures
 - it will be treated as a new line within the list item.
 
 
->> PEN.135 - List Item Levels
+>> PEN.235 - List Item Levels
 
 To build the hierarchy within a list, use 1-n list markers:
 
@@ -135,20 +141,20 @@ To build the hierarchy within a list, use 1-n list markers:
 Pencilin first attempts to correct all non-sensical hierarchy from the list block.
 
 
->> PEN.136 - List Item Clean-Up
+>> PEN.236 - List Item Clean-Up
 
 List items are stripped of all list signatures and whitespaces from the beginning and end of each line.
 
 
 
-> PEN.140 - Code Blocks
+> PEN.240 - Code Blocks
 
 - Code blocks are defined by indentation. Any amount of indentation will do, even only one space.
 - Pencilin uses the line with the least amount of indentation as the 'vertical ruler'. That is, Pencilin will left strip that amount from each line.
 
 
 
-> PEN.105 - Blockquotes
+> PEN.205 - Blockquotes
 
 - Blockquotes are defined by identation + double quotation marks.
 - You can finish the blockquote with another double quotation mark to increase readability - this is not mandatory though.
@@ -157,7 +163,7 @@ List items are stripped of all list signatures and whitespaces from the beginnin
 
 
 
-> PEN.200 - Inline Styles
+> PEN.300 - Inline Styles
 
 Pencilin supports the following inline styles:
 
@@ -173,14 +179,14 @@ Pencilin cares about semantics. Hence, you should understand the term 'bold' as 
 Consequently, when it comes to HTML Pencilin will render 'italic' text using the |em| tag, and 'bold' text using the 'strong' tag.
 
 
->> PEN.201 - Bold
+>> PEN.301 - Bold
 
 To bold text, surround it with asteriks.
 
 	It's time to be *bold*.
 
 
->> PEN.202 - Underline
+>> PEN.302 - Underline
 
 To underline text, surround it with underscores.
 
@@ -189,7 +195,7 @@ Example:
 	It is easy to _underline_ text.
 
 
->> PEN.203 - Italic
+>> PEN.303 - Italic
 
 To italicize text, surround it with forward slashes.
 
@@ -197,12 +203,12 @@ Example:
 
 	The best Pizza is made in /Italy/.
 
->> PEN.204 - Strike Through
+>> PEN.304 - Strike Through
 
 TODO
 
 
->> PEN.205 - Inline Code
+>> PEN.305 - Inline Code
 
 Surround inline code with pipes.
 
@@ -217,7 +223,7 @@ If you need a pipe inside an inline code section, escape it:
 Note: any inline decoration within an inline code section is (of course) ignored.
 
 
->> PEN.210 - Nesting inline styles
+>> PEN.310 - Nesting inline styles
 
 The bold, underline, and italic inline styles can be nested. Example:
 
@@ -225,7 +231,45 @@ The bold, underline, and italic inline styles can be nested. Example:
 
 
 
-> PEN.300 - Attributes and anchors
+> PEN.400 - Links and Images
+
+>> PEN.401 - Links
+
+Surround links with brackets. Example:
+
+	<http://pencilin.org>
+
+How to remember: the brackets point left and right (away from the link), as if pointing to something external.
+
+You can supply an anchor text for links by adding it inside the square bracket and separating it from the url with a pipe. Example:
+
+	<pencilin|http://pencilin.org>
+
+The anchor text should be the first thing. However, Pencilin is not picky and will attempt to recognize the link.
+
+
+>> PEN.402 - Images
+
+Surround image url with square brackets. Example:
+
+	[myimage.png]
+
+How to remember: the square brackets are like a painting's frame.
+
+To add alternate text (or any other information) use |<key>:<value>| and separate from the image's url with a pipe:
+
+	[sunset.png|alt:sunset text|title:Acapulco Sunset]
+
+
+>> PEN.403 - Image Links
+
+You can combine image and link:
+
+	<[myimage.png]|http://www.myimage.com>
+
+
+
+> PEN.500 - Attributes and anchors
 
 Attributes are used to
 
@@ -243,7 +287,17 @@ If the optional |:<value>| portion is not given, Pencilin considers the attribut
 
 
 
-> PEN.301 - Block Attributes
+> PEN.501 - Meta Attributes
+
+If an attribute does not prepend a block (i.e. is not directly above a block), it is considered meta data.
+
+Meta attributes use the same syntax as Block Attributes.
+
+	@title:Down the Rabbit Hole
+
+
+
+> PEN.502 - Block Attributes
 
 Attributes belong to the block they prepend.
 
@@ -255,17 +309,7 @@ Attributes use the |@| prefix, followed by |<key>:<value>|. For instance:
 
 
 
-> PEN.302 - Meta Attributes
-
-If an attribute does not prepend a block (i.e. is not directly above a block), it is considered meta data.
-
-Meta attributes use the same syntax as Block Attributes.
-
-	@title:Down the Rabbit Hole
-
-
-
-> PEN.303 - Anchor Attributes
+> PEN.503 - Anchor Attributes
 
 Attributes without the value portion are considered anchors:
 
@@ -273,7 +317,7 @@ Attributes without the value portion are considered anchors:
 
 
 
-> PEN.304 - Mixins (i.e. variables)
+> PEN.504 - Mixins (i.e. variables)
 
 Any meta attribute you define can be used as a variable inside your text.
 
@@ -289,14 +333,14 @@ If a meta attribute does not exist, Pencilin will simply ignore the mixin (i.e. 
 
 
 
-> PEN.310 - Built-in attribute keys
+> PEN.510 - Built-in attribute keys
 
 Pencilin features a handful of built-in attribute keys:
 
 - |class| : CSS class
 
 
-> PEN.311 - Class Attribute Key
+> PEN.511 - Class Attribute Key
 
 The |class| attribute key is used to add CSS classes to blocks.
 
@@ -311,43 +355,7 @@ renders to:
 
 
 
-> PEN.400 - Links and Images
 
-
-
-> PEN.401 - Links
-
-Surround links with brackets. Example:
-
-	<http://pencilin.org>
-
-How to remember: the brackets point left and right (away from the link), as if pointing to something external.
-
-You can supply an anchor text for links by adding it inside the square bracket and separating it from the url with a pipe. Example:
-
-	<pencilin|http://pencilin.org>
-
-The anchor text should be the first thing. However, Pencilin is not picky and will attempt to recognize the link.
-
-
-> PEN.402 - Images
-
-Surround image url with square brackets. Example:
-
-	[myimage.png]
-
-How to remember: the square brackets are like a painting's frame.
-
-To add alternate text (or any other information) use |<key>:<value>| and separate from the image's url with a pipe:
-
-	[sunset.png|alt:sunset text|title:Acapulco Sunset]
-
-
-> PEN.403 - Image Links
-
-You can combine image and link:
-
-	<[myimage.png]|http://www.myimage.com>
 
 
 

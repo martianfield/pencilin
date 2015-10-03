@@ -122,7 +122,6 @@ Example:
 >> PEN.232 - Ordered Lists
 
 - Ordered list items are decorated with a leading period (.).
-- Ordered lists can have their ordinal set explicitly (1., 2., etc)
 
 Example:
 
@@ -451,6 +450,7 @@ and this, using empty lines:
 - Using Meta Attributes as Placeholders
 	- meta data can be used as placeholders
 	- to use a meta attributes as placeholders, use '@@<key>@@'
+- Allow explictly setting ordinals for ordered lists?
 
 
 

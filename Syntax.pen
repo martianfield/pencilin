@@ -13,6 +13,8 @@
 -- 210 Paragraph
 -- 220 Header
 -- 230 Lists
+--- 231 Unordered Lists
+--- 232 Ordered Lists
 -- 240 Code Block
 -- 250 Blockquotes
 - 300 Inline Styles
@@ -103,21 +105,7 @@ If you use run-on lines, Pencilin will however not remove |>| prefixes. Format h
 - List levels are indicated by means of additional list type decorators and not by indentation.
 
 
->> PEN.231 - Ordered Lists
-
-- Ordered list items are decorated with a leading period (.).
-- Ordered lists can have their ordinal set explicitly (1., 2., etc)
-
-Example:
-
-	. first
-	. second
-	.. first second
-	.. second second
-	. third
-
-
->> PEN.232 - Unordered Lists
+>> PEN.231 - Unordered Lists
 
 Unorderered list items are marked with a leading minus sign (-).
 
@@ -129,6 +117,20 @@ Example:
 	- Movies
 	-- Comdedies
 	-- Sci-Fi
+
+
+>> PEN.232 - Ordered Lists
+
+- Ordered list items are decorated with a leading period (.).
+- Ordered lists can have their ordinal set explicitly (1., 2., etc)
+
+Example:
+
+	. first
+	. second
+	.. first second
+	.. second second
+	. third
 
 
 >> PEN.233 - Mixing List Types

@@ -100,7 +100,7 @@ If you use run-on lines, Pencilin will however not remove |>| prefixes. Format h
 
 - Lists are blocks. I.e. any empty line inside a list will be considered as the end of the list block.
 - Ordered and unordered lists are supported
-- List levels are indicated by means of additional list type decorators
+- List levels are indicated by means of additional list type decorators and not by indentation.
 
 
 >> PEN.231 - Ordered Lists
@@ -108,10 +108,27 @@ If you use run-on lines, Pencilin will however not remove |>| prefixes. Format h
 - Ordered list items are decorated with a leading period (.).
 - Ordered lists can have their ordinal set explicitly (1., 2., etc)
 
+Example:
+
+	. first
+	. second
+	.. first second
+	.. second second
+	. third
+
 
 >> PEN.232 - Unordered Lists
 
 Unorderered list items are marked with a leading minus sign (-).
+
+Example:
+
+	- Games
+	-- Tabletop
+	-- Console
+	- Movies
+	-- Comdedies
+	-- Sci-Fi
 
 
 >> PEN.233 - Mixing List Types
